@@ -83,11 +83,13 @@ type Defaults() =
     /// Default configuration for led stripe is { Red = 0x14; Green = 0x15; Blue = 0x17; Ground = 0x16 }
     static member val LedSripe = { Red = 0x14; Green = 0x15; Blue = 0x17; Ground = 0x16 }
     /// Default TRIK encoder ports are B1 .. B4
-    static member val EncoderPorts = [| B1; B2; B3; B4 |]
+    static member val EncoderPorts = [| B1; B2; B3; B4; EncoderPort.E1; EncoderPort.E2; EncoderPort.E3; EncoderPort.E4 |]
     /// Default TRIK pwm ports are M1 .. M4
     static member val MotorPorts = [| M1; M2; M3; M4 |]
     /// Default TRIK sensor ports are A1 .. A6
     static member val SensorPorts = [| A1; A2; A3; A4; A5; A6 |]
+    
+    static member val SonarPorts = [| D1; D2 |]
 
 
     

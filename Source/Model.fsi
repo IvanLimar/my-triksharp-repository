@@ -9,7 +9,7 @@
       /// Class for working with TRIK accelerometer
       member Accel : Sensors.Accelerometer
       /// Use AnalogSensors[Sensor.A1] for accessing A1 Analog sensor
-      member AnalogSensors : IDictionary<ISensorPort,Sensors.AnalogSensor>
+      member AnalogSensors : IDictionary<ISensorPort, Sensors.AnalogSensor>
       /// Configuration property that used with first access to analog sensors. You can specify new ports name and its relocations
       member AnalogSensorsConfig : ISensorPort [] with get, set
       /// Class for getting access to level of Battery charging royalty
@@ -17,7 +17,7 @@
       /// Class for working with TRIK on-board Buttons
       member Buttons : Devices.Buttons
       /// Use Encoders[Encoder.B1] for accessing B1 Encoder 
-      member Encoders : IDictionary<IEncoderPort,Sensors.Encoder>
+      member Encoders : IDictionary<IEncoderPort, Sensors.Encoder>
       /// Configuration property that used with first access to encoders. You can specify new ports name and its relocations
       member EncodersConfig : IEncoderPort [] with get, set      
       /// Class for working with TRIK gyroscope
@@ -37,7 +37,7 @@
       ///<summary>Determines the input source for MXNSensor (e.g. USB or VP* ports) </summary>
       member MXNSensorConfig : VideoSource with get, set
       /// Allows you to interact with a motor at a specified port. Example: Use Motors[Motor.M1] for accessing M1 motor
-      member Motors : IDictionary<IMotorPort,Devices.PowerMotor>
+      member Motors : IDictionary<IMotorPort, Devices.PowerMotor>
       ///<summary>Allows you to detect 2D objects by color mask via camera</summary>
       member ObjectSensor : Sensors.ObjectSensor
       ///<summary>Determines the input source for ObjectSensor (e.g. USB or VP* ports) </summary>
@@ -47,12 +47,16 @@
       /// Port number for PadServer, default port is 4444
       member PadConfig : int with get, set
       /// Use Servos[Servo.E1] for accessing E1 servo motor
-      member Servos : IDictionary<IServoPort,Devices.ServoMotor>
+      member Servos : IDictionary<IServoPort, Devices.ServoMotor>
       /// <summary>Pass configuration dictionary to make sure servos work fine.</summary>
-      member ServosConfig : IDictionary<IServoPort,ServoKind> with get, set
+      member ServosConfig : IDictionary<IServoPort, ServoKind> with get, set
       /// <summary>Synonym for Thread.Sleep, makes thread-execution stop for specified time</summary>
       /// <param name="ms">Delay time in milliseconds</param>
       member Sleep : ms:int -> unit
+      /// Use Sonars[SonarPort.D1] for accessing D1 sonar sensor
+      member Sonars : IDictionary<ISonarPort, Sensors.Sonar>
+      /// Configuration property that used with first access to sonar sensors. You can specify new ports name and its relocations
+      member SonarsConfig : ISonarPort [] with get, set
       /// <summary>Method for registering Disposable resources to the model. Dispose invocation on model will lead to calling Dispose on all registered objects </summary>
       /// <param name="resource"> Disposable object to be registered for Model's lifetime span</param>
       static member RegisterResource : resource: #System.IDisposable -> unit

@@ -33,6 +33,7 @@ type Model () as model =
     let motor =        lazy propertyInit model.MotorsConfig        (fun cnum -> new PowerMotor(cnum))
     let encoder =      lazy propertyInit model.EncodersConfig      (fun cnum -> new Encoder(cnum))
     let analogSensor = lazy propertyInit model.AnalogSensorsConfig (fun cnum -> new AnalogSensor(cnum))
+    let sonar =        lazy propertyInit model.SonarsConfig        (fun cnum -> new Sonar(0, 400, cnum))
     
     member val PadConfig =          4444 with get, set
     member val LineSensorConfig =   VideoSource.VP2 with get, set
@@ -54,11 +55,14 @@ type Model () as model =
 
     member val AnalogSensorsConfig: ISensorPort [] = 
         (Defaults.SensorPorts |> Array.map (fun x -> upcast x)) with get, set
+        
+    member val SonarsConfig : ISonarPort [] = 
+        (Defaults.SonarPorts |> Array.map (fun x -> upcast x)) with get, set
 
 
     member self.Accel         with get() = accel.Force()
     member self.AnalogSensors with get() = analogSensor.Force()
-    member self.Battery       with get() =  battery.Force()
+    member self.Battery       with get() = battery.Force()
     member self.Buttons       with get() = buttons.Force()
     member self.Encoders      with get() = encoder.Force()
     member self.Gyro          with get() = gyro.Force()
@@ -70,6 +74,7 @@ type Model () as model =
     member self.ObjectSensor  with get() = objectSensor.Force()
     member self.Pad           with get() = pad.Force()
     member self.Servos        with get() = servo.Force()
+    member self.Sonars        with get() = sonar.Force()
     
     member self.Sleep (ms: int) = Thread.Sleep ms
 
@@ -91,5 +96,5 @@ type Model () as model =
                 dispose lineSensor; dispose objectSensor; dispose mxnSensor; 
                 dispose gyro; dispose accel; dispose led; dispose pad;
                 dispose ledStripe; disposeMap motor; disposeMap servo; 
-                disposeMap analogSensor; dispose buttons
+                disposeMap analogSensor; dispose buttons; disposeMap sonar
                 isDisposed <- true
